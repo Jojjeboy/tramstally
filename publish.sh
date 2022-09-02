@@ -46,3 +46,13 @@ else
     echo "Inga förändringar upptäcktes.\n*** Script stoppat ***"
     exit 0;
 fi
+
+
+# ng build --prod --output-path docs --base-href "https://jojjeboy.github.io/tramstally/" && git add . && git commit -m"Publishing" && git push
+# 
+# 
+#     
+# 
+#     
+#     
+# 
