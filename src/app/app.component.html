@@ -41,15 +41,17 @@
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="text-center fw-light">{{ value }}</h1>
         <p class="lead text-center text-muted">
-          Something short and le it entirely.
+          Tramsig tjuvåkningsräknare
         </p>
-        <ul class="list-group list-group-flush m-4">
-          <li class="list-group-item">Pengar kvar att spara: {{ moneyLeftToSave }}kr</li>
-          <li class="list-group-item">Antal tjuvåkningar kvar: {{freeRidesLeft}}st</li>
+        <ul class="list-group list-group-flush m-5">
+          <li class="list-group-item">Pengar kvar att spara: <strong>{{ moneyLeftToSave }}kr</strong></li>
+          <li class="list-group-item">Antal tjuvåkningar kvar: <strong>{{freeRidesLeft}}st</strong></li>
         </ul>
         <p class="text-center">
-          <a href="#" (click)="decrease()" class="btn btn-danger my-2">Minska</a> &nbsp;
-          <a href="#" (click)="increase()" class="btn btn-success my-2">Öka</a>
+          
+          <button type="button" (click)="decrease()" [disabled]="freeRidesLeft == 43" class="btn btn-danger my-2">Minska</button> &nbsp;
+          <button type="button" (click)="increase()" [disabled]="freeRidesLeft == 0" class="btn btn-success my-2">Öka</button>
+          
         </p>
       </div>
     </div>
