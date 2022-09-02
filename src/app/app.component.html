@@ -36,12 +36,18 @@
 
 <main>
 
-  <section class="py-5 text-center container">
+  <section class="py-5  container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">{{ value }}</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
+        <h1 class="text-center fw-light">{{ value }}</h1>
+        <p class="lead text-center text-muted">
+          Something short and le it entirely.
+        </p>
+        <ul class="list-group list-group-flush m-4">
+          <li class="list-group-item">Pengar kvar att spara: {{ moneyLeftToSave }}kr</li>
+          <li class="list-group-item">Antal tjuvåkningar kvar: {{freeRidesLeft}}st</li>
+        </ul>
+        <p class="text-center">
           <a href="#" (click)="decrease()" class="btn btn-danger my-2">Minska</a> &nbsp;
           <a href="#" (click)="increase()" class="btn btn-success my-2">Öka</a>
         </p>

@@ -8,12 +8,17 @@ import { LocalStorageServiceService } from './local-storage-service';
 })
 export class AppComponent implements OnInit{
   public value = 0;
+  public ticketcost: number = 35;
+  public fine: number = 1500;
+  public moneyLeftToSave: number = 0;
+  public freeRidesLeft: number = 0;
   constructor(private localStorageService: LocalStorageServiceService){
 
   }
 
   ngOnInit(){
     this.getCount();
+    this.reCalculate();
   }
 
   public getCount() {
@@ -22,12 +27,19 @@ export class AppComponent implements OnInit{
   public increase(){
     this.value += 1;
     this.localStorageService.increase();
+    this.reCalculate();
   }
   public decrease(){
     if(this.value > 0){
       this.value -= 1;
       this.localStorageService.decrease();
+      this.reCalculate();
     }
+  }
+
+  public reCalculate(){
+    this.moneyLeftToSave = this.fine - (this.ticketcost * this.value)
+    this.freeRidesLeft = Math.ceil(this.fine / this.ticketcost) - this.value;
   }
 
 }
