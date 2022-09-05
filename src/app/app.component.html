@@ -25,9 +25,9 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
           class="me-3 bi bi-ticket-perforated" viewBox="0 0 16 16">
           <path
-            d="M4 4.85v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Zm-7 1.8v.9h1v-.9H4Zm7 0v.9h1v-.9h-1Z" />
+            d="M4 4.85v.9h2v-.9H4Zm7 0v.9h2v-.9h-1Zm-7 1.8v.9h2v-.9H4Zm7 0v.9h2v-.9h-1Zm-7 1.8v.9h2v-.9H4Zm7 0v.9h2v-.9h-1Zm-7 1.8v.9h2v-.9H4Zm7 0v.9h2v-.9h-1Z" />
           <path
-            d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h13a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z" />
+            d="M1.5 3A1.5 1.5 0 0 0 0 4.5V6a.5.5 0 0 0 .5.5 1.5 1.5 0 1 1 0 3 .5.5 0 0 0-.5.5v1.5A1.5 1.5 0 0 0 1.5 13h23a1.5 1.5 0 0 0 1.5-1.5V10a.5.5 0 0 0-.5-.5 1.5 1.5 0 0 1 0-3A.5.5 0 0 0 16 6V4.5A1.5 1.5 0 0 0 14.5 3h-13ZM1 4.5a.5.5 0 0 1 .5-.5h23a.5.5 0 0 1 .5.5v1.05a2.5 2.5 0 0 0 0 4.9v1.05a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-1.05a2.5 2.5 0 0 0 0-4.9V4.5Z" />
         </svg>
 
         <strong>Tramsig tjuvåkningsräknare</strong>
@@ -40,32 +40,48 @@
   </div>
 </header>
 
-<main>
-
-  <section class="py-5  container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="text-center fw-light">{{ value }}st</h1>
-        <p class="lead text-center text-muted">
-          tramsiga tjuvåkningar
-        </p>
-        <ul class="list-group list-group-flush m-5">
-          <li class="list-group-item">
-            <span *ngIf="moneyLeftToSave > 0">
-              Pengar kvar att spara: <strong>{{ moneyLeftToSave }}kr</strong>
-            </span>
-            <span *ngIf="moneyLeftToSave < 0">
-              Intjänade pengar: <strong>{{ moneyLeftToSave * -1}}kr</strong>
-            </span>
-          </li>
-          <li class="list-group-item" *ngIf="moneyLeftToSave > 0">Antal tjuvåkningar kvar: <strong>{{freeRidesLeft}}st</strong></li>
-        </ul>
-        <div class="d-grid gap-2">
-          <button type="button" (click)="increase()" class="btn btn-outline-success my-2 btn-block">Öka</button>
-          <button type="button" (click)="decrease()" [disabled]="freeRidesLeft == 43"class="btn btn-outline-danger my-2 btn-block">Minska</button> &nbsp;
-        </div>
+<main class="mt-5">
+  <section class="container">
+    <div class="row mb-5">
+      <div class="col">
+        <h2 class="fw-light togo" [ngClass]="balance < 0 ? 'green' : 'red'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-arrow-up"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z" />
+          </svg>
+          {{ nrOfUnpaidRidesLeft *-1 }}<small *ngIf="balance < 0">to go</small>
+        </h2>
+      </div>
+      <div class="col">
+        <h2 class="fw-light green">
+          <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-arrow-down"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z" />
+          </svg>
+          {{ nrOfUnpaidRides }}<small>down</small>
+        </h2>
+      </div>
+      
+    </div>
+    <div class="row mb-5">
+      <div class="col">
+        <h2 class="fw-light text-center down"  [ngClass]="balance < 0 ? 'text-muted' : 'green'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+          </svg>
+          {{ balance }}<small>kr</small>
+        </h2>
+      </div>
+    </div>
+    <div class="row action-buttons">
+      <div class="col">
+        <button type="button" (click)="decrease()" class="btn btn-danger btn-block" [disabled]="nrOfUnpaidRidesLeft == 43">Minska</button> &nbsp;
+      </div>
+      <div class="col">
+        <button type="button" (click)="increase()" class="btn btn-success btn-block">Tjuvåkt</button>
       </div>
     </div>
   </section>
-
 </main>
