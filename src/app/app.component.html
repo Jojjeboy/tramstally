@@ -40,9 +40,9 @@
   </div>
 </header>
 
-<main class="mt-5">
+<main>
   <section class="container">
-    <div class="row mb-5">
+    <div class="row mb-5 mt-5">
       <div class="col">
         <h2 class="fw-light togo" [ngClass]="balance < 0 ? 'green' : 'red'">
           <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-arrow-up"
@@ -65,7 +65,7 @@
       </div>
       
     </div>
-    <div class="row mb-5">
+    <div class="row mb-5 mt-5">
       <div class="col">
         <h2 class="fw-light text-center down"  [ngClass]="balance < 0 ? 'text-muted' : 'green'">
           <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
